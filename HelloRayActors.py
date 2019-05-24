@@ -12,20 +12,13 @@ class Counter(object):
         self.value += 1
         return self.value
 
+    def get_value(self):
+        return self.value
+
 
 if __name__ == "__main__":
     # Initialize runtime environment
     ray.init()
-
-    # Simple usage
-    a1 = Counter.remote()
-    a2 = Counter.remote()
-
-    a1.increment.remote()  # ray.get returns 1
-    a1.increment.remote()  # ray.get returns 2
-    a1.increment.remote()  # ray.get returns 3
-
-    a2.increment.remote()  # ray.get returns 1
 
     # Create ten Counter actors.
     counters = [Counter.remote() for _ in range(10)]
