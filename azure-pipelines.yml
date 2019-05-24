@@ -1,0 +1,31 @@
+# Azure Build Pipeline for Python + Tox
+#
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  python.version: '3.7'
+
+steps:
+
+# Use Python Version
+# Retrieves the specified version of Python from the tool cache.
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+    addToPath: true
+
+- script: python -m pip install --upgrade pip setuptools wheel
+  displayName: 'Install tools'
+
+- script: python -m pip install tox
+  displayName: 'Install Tox'
+
+- script: tox -e py
+  displayName: 'Build Python environment and run tests using tox.'
