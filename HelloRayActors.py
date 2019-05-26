@@ -3,6 +3,7 @@
 
 import ray
 
+
 @ray.remote
 class Counter(object):
     def __init__(self):

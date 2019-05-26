@@ -1,4 +1,3 @@
-
 import ray
 import unittest
 
@@ -58,5 +57,5 @@ class HelloRayActorTests(unittest.TestCase):
         assert result == 2, "Counter #1 value was incremented to 2"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
